@@ -1,3 +1,4 @@
+
 function Message(text)
     if not text then return false end
     x = game:GetService("Players").LocalPlayer.PlayerGui.Menew.Main.LAZYBUTTON
@@ -55,7 +56,6 @@ VisualsW = main:Tab('Visuals')
 FarmingW = main:Tab('Farming')
 MiscW = main:Tab('Misc')
 
---GC
 for i,v in pairs(getgc(true)) do
     if type(v) == 'table' and rawget(v,'updateInventory') and rawget(v,'firebullet') then
         Client.Modules.ClientEnvoirment = getfenv(v.firebullet)
@@ -70,7 +70,6 @@ for i,v in pairs(getgc(true)) do
     end
 end
 
---Framework
 function KillAll()
     local Gun = game.ReplicatedStorage.Weapons:FindFirstChild(game.Players.LocalPlayer.NRPBS.EquippedTool.Value);
     local Crit = math.random() > .6 and true or false;
@@ -78,8 +77,8 @@ function KillAll()
         if v and v ~= game.Players.LocalPlayer and v.Character and v.Character:FindFirstChild("Head") then
             for i =1,10 do
                 local Distance = (game.Players.LocalPlayer.Character.Head.Position - v.Character.Head.Position).magnitude 
-                game.ReplicatedStorage.Events.HitPart:FireServer(v.Character.Head, -- Hit Part
-                v.Character.Head.Position + Vector3.new(math.random(), math.random(), math.random()), -- Hit Position
+                game.ReplicatedStorage.Events.HitPart:FireServer(v.Character.Head, 
+                v.Character.Head.Position + Vector3.new(math.random(), math.random(), math.random()), 
                 Gun.Name, 
                 Crit and 2 or 1, 
                 Distance,
@@ -613,8 +612,8 @@ function KnifeKill()
         local Gun = game.ReplicatedStorage.Weapons:FindFirstChild(game.Players.LocalPlayer.NRPBS.EquippedTool.Value)
         game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(Target.Character.Head.CFrame * CFrame.new(0,2,3))
         local Distance = (game.Players.LocalPlayer.Character.Head.Position - Target.Character.Head.Position).magnitude 
-        game.ReplicatedStorage.Events.HitPart:FireServer(Target.Character.Head, -- Hit Part
-        Target.Character.Head.Position + Vector3.new(math.random(), math.random(), math.random()), -- Hit Position
+        game.ReplicatedStorage.Events.HitPart:FireServer(Target.Character.Head, 
+        Target.Character.Head.Position + Vector3.new(math.random(), math.random(), math.random()), 
         Gun.Name, 
         Crit and 2 or 1, 
         Distance,
@@ -637,7 +636,7 @@ function KnifeKill()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldPos
 end
 
---UI
+
 CombatW:Keybind(
 	"Kill All",
 	Enum.KeyCode.E,
@@ -1214,7 +1213,7 @@ VisualsW:Colorpicker(
 )
 
 
---Farming Framework + UI
+
 
 function fireButton1(button)
 	for i,signal in next, getconnections(button.MouseButton1Click) do
@@ -1259,7 +1258,7 @@ FarmingW:Label('Coming Soon')
 MiscW:Label('DarkHub - Arsenal')
 MiscW:Label('darkhub.xyz')
 
---Scapter stop! uwu
+
 
 Allowed = {
     'RobloxGui',
@@ -1301,22 +1300,12 @@ end)
 
 
 
-
-
-
-
-
---Bad Business Script Here///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 pcall(function()
 
---Load UI
 local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Mikehales7/Darkhub-UI-Library/main/.lua"))()
 main = lib:Window()
 MainWindow = main:Tab('Main')
 Esp = main:Tab('Esp')
-
---Client
-
 Client = {
     Toggles = {
         SilentAim = false,
@@ -1339,7 +1328,6 @@ Client = {
     }
 }
 
---Create UI
 MainWindow:Toggle('Silent Aim',function(state)
     Client.Toggles.SilentAim = state
 end)
@@ -1414,7 +1402,6 @@ spawn(function()
     end
 end)
 
---FOV
 local FOVCircle = Drawing.new("Circle")
 FOVCircle.Thickness = 2
 FOVCircle.NumSides = 460
@@ -1423,7 +1410,6 @@ FOVCircle.Transparency = 0.6
 FOVCircle.Radius = Client.Values.FOV
 FOVCircle.Color = Color3.new(0,255,0)
 
---Framework
 local localPlayer = game:GetService("Players").LocalPlayer
 local currentCamera = game:GetService("Workspace").CurrentCamera
 local Mouse = localPlayer:GetMouse()
@@ -1549,7 +1535,7 @@ function DrawText()
     return text
 end
 
---Esp Loader
+
 
 function AddEsp(player)
     local Box = DrawSquare()
@@ -1680,7 +1666,6 @@ end)
 
 
 
---Big Paintball Script Here//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 local v1 = require(game.ReplicatedStorage:WaitForChild("Framework"):WaitForChild("Library"))
 v1.Message.New("Thanks for using Dark Hub!")
 v1.Message.New("Using an Alt? Make sure to use alts to keep your main safe!")  --stfu faggot adam
@@ -5606,7 +5591,7 @@ GunMods:Toggle('Wallbang',function(state)
 Config.GunMods.Wallbang = state
 end)
 
--- Aimbot
+
 function Funcs:GetTarget()
 local nearestmagnitude = math.huge
 local nearestenemy = nil
@@ -5753,7 +5738,7 @@ else
 end
 if Funcs:IsAlive(player) and player.Character:FindFirstChild("HumanoidRootPart") then
   local RootPosition, OnScreen = Services.Camera:WorldToViewportPoint(player.Character.HumanoidRootPart.Position)
-  local HeadPosition = Services.Camera:WorldToViewportPoint(player.Character.Head.Position + Vector3.new(0, 0, 0)) -- can creat an offset if u want
+  local HeadPosition = Services.Camera:WorldToViewportPoint(player.Character.Head.Position + Vector3.new(0, 0, 0)) 
   local LegPosition = Services.Camera:WorldToViewportPoint(player.Character.HumanoidRootPart.Position - Vector3.new(0, 5, 0))
   local length = RootPosition.Y - ((HeadPosition.Y - LegPosition.Y) / 2)
   local lengthx = RootPosition.X - ((HeadPosition.Y - LegPosition.Y) / 2)
@@ -6078,20 +6063,6 @@ end
 return RayHook(...)
 end))
 
-
-
-
-
-
-
-
-
-
-
-
-
-
---Tilty Tokens (darkhub's owner is a mother fucker)//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Mikehales7/Darkhub-UI-Library/main/.lua"))()
 main = lib:Window()
 local w = main:Tab('DarkHub')
@@ -6112,14 +6083,6 @@ end
 end)
 
 
-
-
-
-
-
-
-
---Tower Of Hell
 y = game:GetService("Players").LocalPlayer.PlayerScripts.LocalScript
 getsenv(y).kick = function() return nil end
 getsenv(y).kick()
